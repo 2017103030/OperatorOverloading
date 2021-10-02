@@ -62,6 +62,26 @@ public:
 	bool operator!=(const Basket& arg) const {
 		return !(*this == arg);
 	}
+
+	// [] Operation Overloading
+	int operator[](int idx) const {
+		if (idx == 0) return apple;
+		else if (idx == 1) return pear;
+		else if (idx == 2) return galic;
+		else throw "Index which is over size of basket";
+	}
+
+	int& operator[](int idx) {
+		if (idx == 0) return apple;
+		else if (idx == 1) return pear;
+		else if (idx == 2) return galic;
+		else throw "Index which is over size of basket";
+	}
+	//operator int() Overloading
+	operator int() const {
+		return apple;
+	}
+
 	// for Global operator funciton overloading
 	friend const Basket operator+(const Basket, int);
 	friend const Basket operator+(int, const Basket);
@@ -191,9 +211,29 @@ int main() {
 	cout << endl;
 
 	//operator << overloading
+	cout << "operator << test result " << endl;
 	cout << "basket1 : " << endl;
 	basket1.Print();
 	cout << "operator << result : " << endl;
 	cout << basket1 << endl;
+
+	//operator [] overloading
+	cout << "operator [] test result" << endl;
+	cout << "basket1 : " << endl;
+	cout << basket1 << endl;
+	for (int i = 0; i < 3; i++) {
+		cout << "idx : " << basket1[i] << endl;
+	}
+	cout << endl;
+
+	//operator [] overloading for change component
+	cout << "operator [] test result" << endl;
+	cout << "basket1 : " << endl;
+	cout << basket1 << endl;
+	cout << "basket1[0] = 100 : " << endl;
+	basket1[0] = 100;
+	cout << "basket1 : " << endl;
+	cout << basket1 << endl;
 	return 0;
+
 }
